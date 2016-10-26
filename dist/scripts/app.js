@@ -1,4 +1,23 @@
-var app = angular.module("sampleApp", ["firebase"]);
+
+(function() {
+	function config($stateProvider, $locationProvider) {
+	}
+	angular
+		.module('bloctime', ['ui.router', "firebase"])
+		.config(config);
+})();
+function config($stateProvider, $locationProvider) {
+     $locationProvider
+         .html5Mode({
+             enabled: true,
+             requireBase: false
+         });
+     $stateProvider
+         .state('landing', {
+             url: '/',
+             templateUrl: '/templates/home.html'
+         });
+ }
 
 app.controller("SampleCtrl", function($scope, $firebaseObject) {
   var ref = firebase.database().ref();
@@ -7,7 +26,7 @@ app.controller("SampleCtrl", function($scope, $firebaseObject) {
   // putting a console.log here won't work, see below
 });
 
-var app = angular.module("sampleApp", ["firebase"]);
+
 app.controller("SampleCtrl", function($scope, $firebaseObject) {
   var ref = firebase.database().ref().child("data");
   // download the data into a local object
@@ -17,7 +36,7 @@ app.controller("SampleCtrl", function($scope, $firebaseObject) {
   syncObject.$bindTo($scope, "data");
 });
 
-var app = angular.module("sampleApp", ["firebase"]);
+
 app.controller("SampleCtrl", function($scope, $firebaseArray) {
   var ref = firebase.database().ref().child("messages");
   // create a synchronized array
@@ -25,7 +44,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray) {
   $scope.messages = $firebaseArray(ref);
 });
 
-var app = angular.module("sampleApp", ["firebase"]);
+
 app.controller("SampleCtrl", function($scope, $firebaseArray) {
   var ref = firebase.database().ref().child("messages");
   // create a synchronized array
